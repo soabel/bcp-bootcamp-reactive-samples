@@ -64,12 +64,13 @@ public class SampleApplication {
         var primervalor = listaCuadradosPares.get(0);
         System.out.println("primervalor = " + primervalor);
 
+
     }
 
     private static void funcional() {
         System.out.println("FUNCIONAL");
 
-        List<Integer> listaEnteros = List.of(1, 2, 3, 5, 8, 13, 21, 34, 55);
+        List<Integer> listaEnteros = List.of(1, 22,22, 2, 3, 5, 8, 13, 21, 34, 55);
         System.out.println("listaEnteros = " + listaEnteros);
 
         List<Integer> listaPares = listaEnteros.stream()
@@ -125,10 +126,44 @@ public class SampleApplication {
         var primerElemento = listaCuadradosPares.stream().findFirst().get();
         System.out.println("primerElemento = " + primerElemento);
 
+        var eliminarDuplicados = listaCuadradosPares.stream().distinct()
+                .collect(Collectors.toList());
+        System.out.println("eliminarDuplicados = " + eliminarDuplicados);
+
+        var sortedList =listaCuadradosPares.stream()
+                .sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+
+        System.out.println("sortedList = " + sortedList);
+
     }
 
     private static boolean esPar(Integer num) {
         return num % 2 == 0;
+    }
+
+    private static void funcionalObjetos(){
+
+        System.out.println("FUNCIONAL CON OBJETOS");
+
+        List<Author> authors = new ArrayList<>();
+
+        Author author1 = new Author(1, "Shakespeare", 1700, null);
+        author1.addBook(1, "Romeo y Julieta", 2019);
+        author1.addBook(2, "Hamlet", 2020);
+
+        Author author2 = new Author(2, "Mario Vargas llosa", 1960, null);
+        author2.addBook(3, "La ciudad y los perros", 2018);
+        author2.addBook(4, "Lituma en los andes", 2017);
+
+        Author author3 = new Author(3, "Ciro Alegria", 1910, null);
+        author3.addBook(5, "Los perros hambrientos", 2020);
+        author3.addBook(6, "El mundo es ancho y ajeno", 2020);
+
+        Author author4 = new Author(4, "Jane Austen", 1800, null);
+        author4.addBook(7, "Sentido y Sensibilidad", 2019);
+
+        authors = List.of(author1, author2, author3, author4);
+
     }
 
 }
