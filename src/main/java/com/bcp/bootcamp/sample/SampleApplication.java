@@ -14,9 +14,11 @@ public class SampleApplication {
     public static void main(String[] args) {
         SpringApplication.run(SampleApplication.class, args);
 
-        imperativa();
+//        imperativa();
+//
+//        funcional();
 
-        funcional();
+        funcionalObjetos();;
 
     }
 
@@ -163,6 +165,39 @@ public class SampleApplication {
         author4.addBook(7, "Sentido y Sensibilidad", 2019);
 
         authors = List.of(author1, author2, author3, author4);
+
+        //3.
+
+        var autores2Libros = authors.stream()
+                .filter(a-> a.getBooks().size() ==2)
+                .collect(Collectors.toList());
+
+        System.out.println("autores2Libros = " + autores2Libros);
+
+        //3.1
+
+        var nombresAutores2Libros = authors.stream()
+                .filter(a-> a.getBooks().size() ==2)
+                .map(a-> a.getName())
+                .collect(Collectors.toList());
+
+        System.out.println("nombresAutores2Libros = " + nombresAutores2Libros);
+
+
+        //4.
+        var nombreAutoresLibros2020 = authors.stream()
+                .filter(a-> a.getBooks().stream()
+                        .anyMatch(b-> b.getYear()==2020) )
+                .map(a-> a.getName())
+                .collect(Collectors.toList());
+        System.out.println("nombreAutoresLibros2020 = " + nombreAutoresLibros2020);
+
+        //5.
+
+
+
+
+
 
     }
 
