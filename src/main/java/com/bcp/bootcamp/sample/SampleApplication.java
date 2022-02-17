@@ -2,6 +2,8 @@ package com.bcp.bootcamp.sample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -15,10 +17,10 @@ public class SampleApplication {
         SpringApplication.run(SampleApplication.class, args);
 
 //        imperativa();
-//
 //        funcional();
+//        funcionalObjetos();;
 
-        funcionalObjetos();;
+        reactiva();
 
     }
 
@@ -205,6 +207,51 @@ public class SampleApplication {
 
 
 
+
+
+
+    }
+
+    public static void reactiva() {
+        System.out.println("======= REACTIVA ======== ");
+
+
+        // Inicializar un flujo vacío
+        Mono<Integer> monoVacio = Mono.empty();
+        Flux<Integer> fluxVacio = Flux.empty();
+
+
+        //CREAR FLUJOS MONO Y FLUX
+        Mono<Integer> monoInteger = Mono.just(12);
+
+        monoInteger.
+                subscribe(x -> System.out.println("x = " + x));
+
+        Flux<Integer> fluxInteger = Flux.just(1, 2, 4);
+        fluxInteger.subscribe(y -> System.out.println("y = " + y));
+
+        fluxInteger
+                .doOnNext(y -> System.out.println("do y = " + y))
+                .subscribe(y -> System.out.println("y = " + y));
+
+
+        //INICIALIZAR DESDE ITERABLES
+        List<Integer> listaEnteros = List.of(1, 2, 3, 5, 8, 34, 8, 13, 21, 34);
+
+        var flujoIterable  = Flux.fromIterable(listaEnteros);
+        flujoIterable.subscribe(p -> System.out.println("flujoIterable p = " + p));
+
+        var flujoStream = Flux.fromStream(listaEnteros.stream());
+        flujoStream.subscribe(p -> System.out.println("flujoStream p = " + p));
+
+        Flux<Integer> fluxEnteros = Flux.fromIterable(listaEnteros);
+
+//        fluxEnteros
+//                .filter(y -> y < 8)
+//                .map(y -> y * 2)
+//                .sort(Comparator.reverseOrder())
+//                .collectList()
+//                .subscribe(y -> System.out.println("y = " + y));
 
 
 
