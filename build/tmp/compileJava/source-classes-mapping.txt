@@ -1,8 +1,8 @@
 com/bcp/bootcamp/sample/Editorial.java
  com.bcp.bootcamp.sample.Editorial
-com/bcp/bootcamp/sample/SampleApplication.java
- com.bcp.bootcamp.sample.SampleApplication
-com/bcp/bootcamp/sample/Author.java
- com.bcp.bootcamp.sample.Author
 com/bcp/bootcamp/sample/Book.java
  com.bcp.bootcamp.sample.Book
+com/bcp/bootcamp/sample/Author.java
+ com.bcp.bootcamp.sample.Author
+com/bcp/bootcamp/sample/SampleApplication.java
+ com.bcp.bootcamp.sample.SampleApplication

@@ -14,11 +14,11 @@ public class SampleApplication {
     public static void main(String[] args) {
         SpringApplication.run(SampleApplication.class, args);
 
-        imperativa();
+//        imperativa();
 //
 //        funcional();
 
-//        funcionalObjetos();;
+        funcionalObjetos();;
 
     }
 
@@ -26,7 +26,7 @@ public class SampleApplication {
         System.out.println("IMPERATIVA");
 
         //1.
-        List<Integer> listaEnteros = List.of(1, 2, 3, 5, 8, 13, 21, 34, 55);
+        List<Integer> listaEnteros = List.of(1, 22, 22, 2, 3, 5, 8, 13, 21, 34, 55);
         System.out.println("listaEnteros = " + listaEnteros);
 
         //2.
@@ -61,10 +61,10 @@ public class SampleApplication {
             }
         }
         System.out.println("maximoCuadrado = " + maximoCuadrado);
-        
-        //6.
-        var primervalor = listaCuadradosPares.get(0);
-        System.out.println("primervalor = " + primervalor);
+//
+//        //6.
+//        var primervalor = listaCuadradosPares.get(0);
+//        System.out.println("primervalor = " + primervalor);
 
 
     }
@@ -74,6 +74,8 @@ public class SampleApplication {
 
         List<Integer> listaEnteros = List.of(1, 22,22, 2, 3, 5, 8, 13, 21, 34, 55);
         System.out.println("listaEnteros = " + listaEnteros);
+
+
 
         List<Integer> listaPares = listaEnteros.stream()
 //                .filter(p -> p % 2 == 0)  // Lambda expressions
@@ -85,16 +87,14 @@ public class SampleApplication {
                 .collect(Collectors.toList());
         System.out.println("listaPares = " + listaPares);
 
-
-//        List<Integer> listaCuadradosPares = listaPares.stream()
-//                .map(p-> p * p)
-//                .collect(Collectors.toList());
-
+//
+////        List<Integer> listaCuadradosPares = listaPares.stream()
+////                .map(p-> p * p)
+////                .collect(Collectors.toList());
+//
         List<Integer> listaCuadradosPares = listaEnteros.stream()
                 .filter(SampleApplication::esPar)
-                .map(p -> {
-                    return p * p;
-                })
+                .map(p -> p * p)
                 .collect(Collectors.toList());
         System.out.println("listaCuadradosPares = " + listaCuadradosPares);
 
@@ -112,7 +112,7 @@ public class SampleApplication {
                 .reduce((sum, p)-> sum + p).get();
 
         System.out.println("sumaCuadradosPares = " + sumaCuadradosPares);
-        
+
         var maximoCuadrado = listaCuadradosPares.stream()
                 .max(Comparator.naturalOrder())
                 .get();
@@ -124,7 +124,7 @@ public class SampleApplication {
                 .get();
 
         System.out.println("minimoCuadrado = " + minimoCuadrado);
-        
+
         var primerElemento = listaCuadradosPares.stream().findFirst().get();
         System.out.println("primerElemento = " + primerElemento);
 
@@ -133,7 +133,7 @@ public class SampleApplication {
         System.out.println("eliminarDuplicados = " + eliminarDuplicados);
 
         var sortedList =listaCuadradosPares.stream()
-                .sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+                .sorted(Comparator.naturalOrder()).collect(Collectors.toList());
 
         System.out.println("sortedList = " + sortedList);
 
@@ -168,31 +168,40 @@ public class SampleApplication {
 
         //3.
 
-        var autores2Libros = authors.stream()
-                .filter(a-> a.getBooks().size() ==2)
-                .collect(Collectors.toList());
-
-        System.out.println("autores2Libros = " + autores2Libros);
+//        var autores2Libros = authors.stream()
+//                .filter(a-> a.getBooks().size() ==1)
+//                .collect(Collectors.toList());
+//
+//        System.out.println("autores2Libros = " + autores2Libros);
 
         //3.1
 
-        var nombresAutores2Libros = authors.stream()
-                .filter(a-> a.getBooks().size() ==2)
-                .map(a-> a.getName())
-                .collect(Collectors.toList());
-
-        System.out.println("nombresAutores2Libros = " + nombresAutores2Libros);
+//        var nombresAutores2Libros = authors.stream()
+//                .filter(a-> a.getBooks().size() ==1)
+//                .map(a-> a.getName())
+//                .collect(Collectors.toList());
+//
+//        System.out.println("nombresAutores2Libros = " + nombresAutores2Libros);
 
 
         //4.
+//        var nombreAutoresLibros2020 = authors.stream()
+//                .filter(a-> a.getBooks().stream()
+//                        .anyMatch(b-> b.getYear()==2020) )
+//                .map(a-> a.getName())
+//                .collect(Collectors.toList());
+//        System.out.println("nombreAutoresLibros2020 = " + nombreAutoresLibros2020);
+
+
         var nombreAutoresLibros2020 = authors.stream()
                 .filter(a-> a.getBooks().stream()
-                        .anyMatch(b-> b.getYear()==2020) )
+                        .filter(b-> b.getYear()==2020).count()>0)
                 .map(a-> a.getName())
                 .collect(Collectors.toList());
         System.out.println("nombreAutoresLibros2020 = " + nombreAutoresLibros2020);
 
-        //5.
+//
+//        //5.
 
 
 
